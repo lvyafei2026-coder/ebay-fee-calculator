@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eBay Fee Calculator — Calculate Your eBay Profit After Fees (2026)</title>
+<meta name="description" content="Free eBay fee calculator. Enter your sale price, shipping, and item cost to see exactly how much you keep after eBay's final value fee and payment processing.">
+<meta name="keywords" content="ebay fee calculator, ebay profit calculator, ebay fees 2026, how much does ebay take, ebay seller fees, ebay final value fee">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="theme-color" content="#0064D2">
+
+<link rel="canonical" href="https://toolara.dev/ebay-fee-calculator/zh/">
+<link rel="alternate" hreflang="en" href="https://toolara.dev/ebay-fee-calculator/">
+<link rel="alternate" hreflang="zh-Hans" href="https://toolara.dev/ebay-fee-calculator/zh/">
+<link rel="alternate" hreflang="x-default" href="https://toolara.dev/ebay-fee-calculator/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="eBay Fee Calculator — Calculate Your eBay Profit After Fees">
+<meta property="og:description" content="See exactly how much you keep after eBay's final value fee and payment processing.">
+<meta property="og:url" content="https://toolara.dev/ebay-fee-calculator/zh/">
+<meta property="og:locale" content="en_US">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "eBay Fee Calculator",
+  "url": "https://toolara.dev/ebay-fee-calculator/zh/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "description": "Free calculator that shows exactly how much an eBay seller keeps after all fees.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<script>window.__FORCE_LANG__ = 'zh';</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="lang-switch">
+    <select id="langSelect" onchange="setLang(this.value)" aria-label="Language">
+      <option value="en">English</option>
+      <option value="zh">简体中文</option>
+    </select>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge">🛒 eBay Seller Tool</div>
+    <h1 data-i18n="title">eBay Fee Calculator</h1>
+    <p data-i18n="subtitle">See exactly how much you keep after eBay's final value fee, insertion fee, and payment processing.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2 class="visually-hidden" data-i18n="calcHeading">Calculator</h2>
+
+    <div class="row">
+      <div>
+        <label for="price" data-i18n="priceLabel">Sale price ($)</label>
+        <input type="number" id="price" min="0" step="0.01" placeholder="50.00" value="50" inputmode="decimal">
+      </div>
+      <div>
+        <label for="shipping" data-i18n="shippingLabel">Shipping charged ($)</label>
+        <input type="number" id="shipping" min="0" step="0.01" placeholder="8.00" value="8" inputmode="decimal">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="itemCost" data-i18n="itemCostLabel">Item cost ($)</label>
+        <input type="number" id="itemCost" min="0" step="0.01" placeholder="20.00" value="20" inputmode="decimal">
+      </div>
+      <div>
+        <label for="shipCost" data-i18n="shipCostLabel">Your shipping cost ($)</label>
+        <input type="number" id="shipCost" min="0" step="0.01" placeholder="7.00" value="7" inputmode="decimal">
+      </div>
+    </div>
+
+    <label for="category" data-i18n="categoryLabel">Category</label>
+    <select id="category">
+      <option value="most" selected data-i18n="catMost">Most categories (13.6%)</option>
+      <option value="books" data-i18n="catBooks">Books, DVDs, Music (14.6%)</option>
+      <option value="clothing" data-i18n="catClothing">Clothing &amp; Accessories (13.6%)</option>
+      <option value="electronics" data-i18n="catElectronics">Consumer Electronics (13.6%)</option>
+      <option value="collectibles" data-i18n="catCollectibles">Collectibles (13.6%)</option>
+      <option value="jewelry" data-i18n="catJewelry">Jewelry &amp; Watches (15.0%)</option>
+      <option value="heavy" data-i18n="catHeavy">Heavy Equipment (9.0%)</option>
+    </select>
+
+    <details class="advanced">
+      <summary data-i18n="advancedLabel">Advanced fee settings</summary>
+      <div class="row">
+        <div>
+          <label for="insertionFee" data-i18n="insertionLabel">Insertion fee ($)</label>
+          <input type="number" id="insertionFee" min="0" step="0.01" value="0.00" inputmode="decimal">
+        </div>
+        <div>
+          <label for="promotedPct" data-i18n="promotedLabel">Promoted listings (%)</label>
+          <input type="number" id="promotedPct" min="0" step="0.1" value="0" inputmode="decimal">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="storeFee" data-i18n="storeLabel">Store subscription ($)</label>
+          <input type="number" id="storeFee" min="0" step="0.01" value="0" inputmode="decimal">
+        </div>
+        <div>
+          <label for="payPct" data-i18n="payPctLabel">Payment processing (%)</label>
+          <input type="number" id="payPct" min="0" step="0.1" value="0" inputmode="decimal">
+        </div>
+      </div>
+      <p class="hint" data-i18n="advancedHint">eBay's final value fee already includes payment processing in most markets. Leave payment processing at 0 unless you're on a legacy managed payments plan.</p>
+    </details>
+
+    <button class="calc" type="button" onclick="calculate()" data-i18n="calcBtn">Calculate profit</button>
+
+    <div id="result" role="region" aria-live="polite">
+      <div class="result-label" data-i18n="resultLabel">Net profit</div>
+      <div class="net-profit" id="netProfit">—</div>
+      <div class="margin-note" id="marginNote"></div>
+
+      <div class="breakdown">
+        <div class="bd-row"><span data-i18n="bdRevenue">Total revenue</span><strong id="bdRevenue">—</strong></div>
+        <div class="bd-row bd-sub"><span data-i18n="bdInsertion">Insertion fee</span><strong id="bdInsertion">—</strong></div>
+        <div class="bd-row bd-sub"><span data-i18n="bdFvf">Final value fee</span><strong id="bdFvf">—</strong></div>
+        <div class="bd-row bd-sub"><span data-i18n="bdPromoted">Promoted listings</span><strong id="bdPromoted">—</strong></div>
+        <div class="bd-row bd-sub"><span data-i18n="bdPay">Payment processing</span><strong id="bdPay">—</strong></div>
+        <div class="bd-row bd-sub"><span data-i18n="bdStore">Store subscription</span><strong id="bdStore">—</strong></div>
+        <div class="bd-row bd-sub"><span data-i18n="bdTotalFees">Total eBay fees</span><strong id="bdTotalFees">—</strong></div>
+        <div class="bd-divider"></div>
+        <div class="bd-row"><span data-i18n="bdItemCost">Item cost</span><strong id="bdItemCost">—</strong></div>
+        <div class="bd-row"><span data-i18n="bdShipCost">Your shipping cost</span><strong id="bdShipCost">—</strong></div>
+        <div class="bd-divider"></div>
+        <div class="bd-row bd-total"><span data-i18n="bdNet">Net profit</span><strong id="bdNet">—</strong></div>
+      </div>
+
+      <div class="share-row">
+        <button class="share-btn" type="button" onclick="copyShareLink()" data-i18n="shareBtn">Copy shareable link</button>
+        <span class="share-copied" id="shareCopied" data-i18n="shareCopied">Copied!</span>
+      </div>
+
+      <div class="result-disclaimer" data-i18n="resultDisclaimer">Estimate only. eBay fees may vary by category, seller level, and market. Verify current fees on eBay's official Seller Center.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="whatIsTitle">How eBay fees work</h2>
+    <p data-i18n="whatIsText">eBay charges sellers a final value fee on every sale, which is a percentage of the total sale amount including shipping and taxes. Most categories use a flat rate (around 13.6%), but some have different rates or tiered structures. Optional fees include insertion fees for listings beyond your free allotment, promoted listings, and store subscriptions.</p>
+  </section>
+
+  <section>
+    <h2 data-i18n="feesTitle">Current eBay fees (2026)</h2>
+    <table>
+      <thead>
+        <tr><th data-i18n="thFee">Fee</th><th data-i18n="thAmount">Amount</th></tr>
+      </thead>
+      <tbody>
+        <tr><td data-i18n="feeInsertion">Insertion fee</td><td data-i18n="feeInsertionAmt">First 250 listings/month free, then $0.35 per listing</td></tr>
+        <tr><td data-i18n="feeFvf">Final value fee</td><td data-i18n="feeFvfAmt">~13.6% of total sale (most categories)</td></tr>
+        <tr><td data-i18n="feeBooks">Books, DVDs, Music</td><td data-i18n="feeBooksAmt">~14.6%</td></tr>
+        <tr><td data-i18n="feeJewelry">Jewelry &amp; Watches</td><td data-i18n="feeJewelryAmt">~15.0%</td></tr>
+        <tr><td data-i18n="feeHeavy">Heavy Equipment</td><td data-i18n="feeHeavyAmt">~9.0%</td></tr>
+        <tr><td data-i18n="feePromoted">Promoted listings</td><td data-i18n="feePromotedAmt">Your chosen ad rate (typically 2-20%)</td></tr>
+      </tbody>
+    </table>
+    <p data-i18n="feesNote">The final value fee includes payment processing in most markets. Sellers with a store subscription pay lower final value fees but a monthly store fee.</p>
+  </section>
+
+  <section>
+    <h2 data-i18n="howToTitle">How to use this calculator</h2>
+    <ol>
+      <li data-i18n="howTo1">Enter your sale price — what the buyer pays for the item.</li>
+      <li data-i18n="howTo2">Enter shipping charged — what the buyer pays for shipping (enter 0 if free shipping).</li>
+      <li data-i18n="howTo3">Enter your item cost — what you paid for the item or materials.</li>
+      <li data-i18n="howTo4">Enter your shipping cost — what you actually pay the carrier.</li>
+      <li data-i18n="howTo5">Select your category to apply the correct final value fee rate.</li>
+      <li data-i18n="howTo6">Click "Calculate profit" to see your true take-home amount.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 data-i18n="faqTitle">Frequently asked questions</h2>
+    <h3 data-i18n="faq1q">How much does eBay take per sale?</h3>
+    <p data-i18n="faq1a">On a typical $50 sale with $8 shipping (most categories), eBay takes approximately: $6.80 final value fee (13.6% of $50) + $1.09 final value fee on shipping (13.6% of $8) = <strong>$7.89 total</strong>. You keep $50.11 before your own costs.</p>
+
+    <h3 data-i18n="faq2q">Does eBay charge fees on shipping?</h3>
+    <p data-i18n="faq2a">Yes. eBay's final value fee applies to the total sale amount including shipping charges and sales tax. If you charge $8 for shipping, eBay takes approximately 13.6% of that $8 too.</p>
+
+    <h3 data-i18n="faq3q">What is the difference between insertion fee and final value fee?</h3>
+    <p data-i18n="faq3a">The insertion fee is charged when you create a listing (first 250/month are free). The final value fee is charged only when the item sells. Both are deducted from your payout.</p>
+
+    <h3 data-i18n="faq4q">Is it worth having an eBay store subscription?</h3>
+    <p data-i18n="faq4a">If you sell more than 50 items per month or want lower final value fees, a Basic Store subscription ($21.95/month) usually pays for itself. Store subscribers get 1,000 free listings/month and slightly lower final value fees in some categories.</p>
+
+    <h3 data-i18n="faq5q">How do I price my eBay items to make a profit?</h3>
+    <p data-i18n="faq5a">A common formula: (Item cost + Shipping cost) ÷ (1 - 0.14) × 1.5. This assumes eBay takes about 14% in fees and you want a 33% profit margin. For an item costing $20 with $7 shipping: ($27 ÷ 0.86) × 1.5 = <strong>$47.09 minimum sale price</strong>.</p>
+
+    <div class="disclaimer" data-i18n="disclaimer"><strong>Disclaimer:</strong> This calculator provides estimates for educational purposes. eBay's fee structure varies by category, seller level, and market. Always verify current fees in eBay's official Seller Center before making pricing decisions.</div>
+  </section>
+
+  <section>
+    <h2 data-i18n="moreToolsTitle">More seller fee calculators</h2>
+    <p data-i18n="moreToolsText">Try our Etsy Fee Calculator and PayPal Fee Calculator, or check back for Amazon FBA and Depop fee calculators.</p>
+  </section>
+</main>
+
+<footer class="footer" data-i18n="footer">Runs entirely in your browser. No data is collected or stored.</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/calculator.js"></script>
+</body>
+</html>
